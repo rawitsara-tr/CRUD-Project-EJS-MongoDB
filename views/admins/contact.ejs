@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <br>
+        <br>
+        <a href="/admins/chambers" class="btn btn-info">ย้อนกลับ</a>
+        <h3 class="my-4" align="center">รายชื่อที่ติดต่อเข้ามา</h3>
+        <br>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">ติดต่อ</th>
+                    <th scope="col">ชื่อ</th>
+                    <th scope="col">นามสกุล</th>
+                    <th scope="col">เบอร์</th>
+                    <th scope="col">อีเมล</th>
+                    <th scope="col">ข้อความ</th>
+                    <th scope="col">สถานะ</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contacts.forEach(function(contact){ %>
+                <tr>
+                    <td><%= contact.type %></td>
+                    <td><%= contact.fname %></td>
+                    <td><%= contact.lname %></td>
+                    <td><%= contact.phone %></td>
+                    <td><%= contact.email %></td>
+                    <td><%= contact.message %></td>
+                    <td><%= contact.status %></td>
+                    <td><a href="/admins/updateStatus/<%= contact._id %>" class="btn btn-dark">Edit</a></td>
+                    <td>
+                        <form action="/admins/deleteContact/" method="POST" class="delete-contact">
+                            <input type="hidden" name="id" value="<%=contact._id %>">
+                            <input type="submit" class="btn btn-secondary" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.delete-contact').on('submit', function () {
+            if (confirm("คุณต้องการลบข้อมูลหรือไม่")) {
+                return true
+            } else {
+                return false
+            }
+        })
+    })
+</script>
+
+</html>

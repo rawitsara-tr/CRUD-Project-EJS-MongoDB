@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <br>
+        <br>
+        <a href="/admins/chambers" class="btn btn-info">ย้อนกลับ</a>
+        <div class="row">
+                <h3 class="my-4" align="center">ประวัติการจองของสมาชิก</h3>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">ชื่อสมาชิก</th>
+                            <th scope="col">ชื่อโรงแรม</th>
+                            <th scope="col">จำนวน</th>
+                            <th scope="col">วันที่จอง</th>
+                            <th scope="col">สถานะ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% history.forEach(function(history){ %>
+                        <tr>
+                            <th scope="row"><%= history.username %></th>
+                            <td><%= history.hotel %></td>   
+                            <td><%= history.day %> คืน</td>  
+                            <td><%= history.date %></td>  
+                            <td>ชำระเงินแล้ว</td>                  
+                        </tr>
+                        <%})%>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</body>
+</html>

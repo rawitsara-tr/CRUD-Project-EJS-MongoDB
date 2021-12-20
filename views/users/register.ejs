@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+      <meta charset="utf-8">
+      <title></title>
+</head>
+
+<body>
+      <%- include ('../layout') %>
+            <div class="container">
+                  <h3 class="my-4" align="center">Register Form</h3>
+                  <% if(locals.errors){ %>
+                        <ul class="alert alert-danger">
+                              <% Object.values(errors).forEach(function(error){%>
+                                    <li>
+                                          <%= error.msg %>
+                                    </li>
+                                    <%})%>
+                        </ul>
+                        <%}%>
+                              <form class="form-group" action="/users/register" method="post">
+
+                                    <!--<div class="form-group">
+                        <label for="">ประเภทสมาชิก :</label>
+                        <select class="form-control" name="type">
+                              <option value="member">Member</option>
+                              <option value="admin">Admin</option>
+                        </select>
+                  </div>-->
+
+
+                                    <div class="form-group">
+                                          <input type="hidden" name="type" value="member" class="btn btn-outline-white"
+                                                style="color: white ">
+                                    </div>
+
+                                    <div class="form-group">
+                                          <label for="">UserName :</label>
+                                          <input type="text" name="username" value="" class="form-control"
+                                                placeholder="username">
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="">Password :</label>
+                                          <input type="password" name="password" value="" class="form-control"
+                                                minlength="8" maxlength="16" placeholder="password">
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="">Email :</label>
+                                          <input type="text" name="email" value="" class="form-control"
+                                                placeholder="email">
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="">First Name :</label>
+                                          <input type="text" name="fname" value="" class="form-control"
+                                                placeholder="firstname">
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="">Last Name :</label>
+                                          <input type="text" name="lname" value="" class="form-control"
+                                                placeholder="lastname">
+                                    </div>
+                                    <input type="submit" name="" value="สร้างบัญชีผู้ใช้" class="btn btn-success">
+                              </form>
+            </div>
+</body>
+
+</html>

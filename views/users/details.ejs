@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-8">
+
+                    <h1 class="my-4">ห้องพัก</h1>
+
+                    <% chambers.forEach(function(chamber){ %>
+                        <div class="card mb-4">
+                            <img class="card-img-top" src="/images/<%=chamber.image %>" alt="Card image cap">
+                            <div class="card-body">
+                                <h3 class="card-title">โรงแรม <%=chamber.name %>
+                                </h3>
+                                <p class="card-text">สถานที่ : <%=chamber.location %>
+                                </p>
+                                <p class="card-text">ภาค : <%=chamber.sector %>
+                                </p>
+                                <p class="card-text">จังหวัด : <%=chamber.province %>
+                                </p>
+                                <p class="card-text">ประเภท : <%=chamber.type %>
+                                </p>
+                                <p class="card-text">จำนวนเตียง : <%=chamber.bed %> เตียง</p>
+                                <p class="card-text">รายละเอียด : <%=chamber.description %>
+                                </p>
+                                <p class="card-text">ราคาต่อคืน : <%= formatMoney(chamber.price) %> $</p>
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    จองห้องพัก
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">ยืนยันการจอง</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+
+                                            <form class="form-group" action="/payment" method="post">
+                                                <input type="hidden" name="chamber_id" value="<%=chamber._id %>"
+                                                    class="form-control">
+                                                <div class="form-group">
+                                                    <div class="modal-body">
+                                                        คุณ <%= user.username%> ต้องการยืนยันการจอง
+                                                            <input type="hidden" name="username"
+                                                                value="<%= user.username%>" class="form-control">
+                                                            <input type="hidden" name="user_id" value="<%= user._id%>"
+                                                                class="form-control">
+                                                            <br>โรงแรม <%=chamber.name %>
+                                                                <input type="hidden" name="hotel"
+                                                                    value="<%=chamber.name %>" class="form-control">
+                                                                <br>
+                                                                <div class="form-group">
+                                                                    <label for="">จำนวน :</label>
+                                                                    <select class="form-control" name="day">
+                                                                        <option value="1">1 คืน</option>
+
+                                                                    </select>
+                                                                </div>
+                                                                ราคาต่อคืน : <%= formatMoney(chamber.price) %> $
+                                                                    <input type="hidden" name="price"
+                                                                        value="<%=chamber.price %>"
+                                                                        class="form-control">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-white text-white"
+                                                            data-bs-dismiss="modal">ยกเลิก</button>
+                                                        <button type="submit"
+                                                            class="btn btn-white text-white">ยืนยัน</button>
+                                                        <script src="http://checkout.stripe.com/checkout.js"
+                                                            class="stripe-button" data-name="Payment"
+                                                            data-key="pk_test_51HlonRLvj6Kx3VvxfNs055ZzTvHrd7eJagxwTk4jCKUcRMGT8Vrz6Q4Am8BckiD213U1FTV4htcmrqo6CddFHDzZ004rDpKfSn"
+                                                            data-description="ทดลองจ่ายเงิน"
+                                                            data-amount="<%= chamber.price * 100 %>"
+                                                            data-currency="usd">
+                                                            </script>
+                                                        <input type="hidden" name="amount"
+                                                            value="<%= chamber.price * 100 %>">
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer text-muted">
+                                Date : <%= moment(chamber.date).format("DD-MM-YYYY") %><br>
+                                    สิ่งที่เกี่ยวข้อง : <a href="/search/?sectorKeyword=<%=chamber.sector %>">
+                                        <%=chamber.sector %>,
+                                    </a>
+                                    <a href="/search/?provinceKeyword=<%=chamber.province %>">
+                                        <%=chamber.province %>,
+                                    </a>
+                                    <a href="/search/?nameKeyword=<%=chamber.name %>">โรงแรม <%=chamber.name %>,</a>
+                                    <a href="/search/?typeKeyword=<%=chamber.type %>">
+                                        <%=chamber.type %>
+                                    </a>
+                            </div>
+                        </div>
+                        <% }) %>
+                </div>
+                <%- include ('../sidebar') %>
+            </div>
+        </div>
+</body>
+
+</html>

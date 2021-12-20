@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+        <div class="container">
+
+            <div class="jumbotron">
+                <h1 class="display-4">เว็บไซต์จองห้องพัก</h1>
+                <p class="lead"></p>
+                <hr class="my-4">
+                <p></p>
+            </div>
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-8">
+
+                        <h1 class="my-4">โฆษณา</h1>
+
+                        <% advertises.forEach(function(advertise){ %>
+                            <div class="card mb-4">
+                                <img class="card-img-top" src="/images/<%- advertise.image %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        <%= advertise.name %>
+                                    </h3>
+                                    <p class="card-text">
+                                        <%= advertise.description %>
+                                    </p>
+                                    <a href="https://www.alibaba.com/pla/Modern-style-luggage-suitcase-travel-luggage_62398190541.html?mark=google_shopping&biz=pla&language=th&pcy=TH&searchText=luggage&src=sem_ggl&from=sem_ggl&cmpgn=12326237922&adgrp=116324166143&fditm=&tgt=pla-298190246337&locintrst=&locphyscl=1012728&mtchtyp=&ntwrk=u&device=c&dvcmdl=&creative=498237813582&plcmnt=&plcmntcat=&p1=&p2=&aceid=&position=&localKeyword=&pla_prdid=62398190541&pla_country=TH&pla_lang=th&gclid=EAIaIQobChMIncGY1I7h9AIVgTUrCh2H0A_4EAYYAyABEgJZzvD_BwE"
+                                        class="btn btn-primary">Read More &rarr;</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    Date : <%= moment(advertise.date).format("DD-MM-YYYY") %><br>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                    <%- include ('../sidebar') %>
+                </div>
+            </div>
+</body>
+
+</html>

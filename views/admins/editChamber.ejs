@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <h3 class="my-4" align="center">แก้ไขข้อมูลห้องพัก</h3>
+        <a href="/admins/chambers" class="btn btn-info">ย้อนกลับ</a>
+        <br>
+        <br>
+        <br>
+        <% chambers.forEach(function(chamber){ %>
+        <form action="/admins/editChamber" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <h6><label for="">ชื่อโรงแรม : </label></h6>
+                <input type="text" name="name" value="<%= chamber.name %>" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">สถานที่ : </label></h6>
+                <input type="text" name="location" value="<%= chamber.location %>" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">ภาค :</label>
+                <select class="form-control" name="sector">
+                    <option value="ภาคเหนือ" <% if(chamber.sector=="ภาคเหนือ"){%> selected <% }%>>เหนือ</option>
+                    <option value="ภาคกลาง" <% if(chamber.sector=="ภาคกลาง"){%> selected <% }%>>กลาง</option>
+                    <option value="ภาคอีสาน" <% if(chamber.sector=="ภาคอีสาน"){%> selected <% }%>>อีสาน</option>
+                    <option value="ภาคใต้" <% if(chamber.sector=="ภาคใต้"){%> selected <% }%>>ใต้</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h6><label for="">จังหวัด : </label></h6>
+                <input type="text" name="province" value="<%= chamber.province %>" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">ประเภท :</label>
+                <select class="form-control" name="type">
+                    <option value="อพาร์ตเมนต์" <% if(chamber.type=="อพาร์ตเมนต์"){%> selected <% }%>>อพาร์ตเมนต์</option>
+                    <option value="ที่พักตากอากาศ" <% if(chamber.type=="ที่พักตากอากาศ"){%> selected <% }%>>ที่พักตากอากาศ</option>
+                    <option value="วิลลาส่วนตัว" <% if(chamber.type=="วิลลาส่วนตัว"){%> selected <% }%>>วิลลาส่วนตัว</option>
+                    <option value="บังกะโล" <% if(chamber.type=="บังกะโล"){%> selected <% }%>>บังกะโล</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <h6><label for="">จำนวนเตียง : </label></h6>
+                <input type="text" name="bed" value="<%= chamber.bed %>" class="form-control">
+            </div>
+
+            <input type="hidden" name="id" value="<%= chamber._id %>">
+            <div class="form-group">
+                <h6><label for="">รายละเอียด : </label></h6>
+                <textarea name="description" rows="4" cols="80"
+                    class="form-control"><%= chamber.description %></textarea>
+            </div>
+            <div class="form-group">
+                <h6><label for="">ราคาต่อคืน : </label></h6>
+                <input type="text" name="price" value="<%= chamber.price %>" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">รูปภาพ : </label></h6>
+                <input type="file" name="image" value="" class="form-control">
+            </div>
+            <br>
+            <input type="submit" name="" value="อัพเดทข้อมูล" class="btn btn-success">
+        </form>
+        <% }) %>
+    </div>
+</body>
+
+</html>

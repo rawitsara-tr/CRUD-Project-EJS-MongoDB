@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <%- include ('../layout') %>
+  <div class="container">
+    <h3 class="my-4" align="center">Login Form</h3>
+
+    <%- messages() %>
+
+    <form class="form-group" action="/users/login" method="post">
+      <div class="form-group">
+        <label for="">UserName :</label>
+        <input type="text" name="username" value="" class="form-control" placeholder="username">
+      </div>
+      <div class="form-group">
+        <label for="">Password :</label>
+        <input type="password" name="password" value="" class="form-control" placeholder="password">
+      </div>
+      <input type="submit" name="" value="เข้าสู่ระบบ" class="btn btn-success">
+    </form>
+  </div>
+</body>
+<script type="text/javascript">
+  $('#messages').addClass("alert alert-danger");
+</script>
+
+</html>

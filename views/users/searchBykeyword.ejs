@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body>
+  <%- include('../layout') %>
+  <div class="container">
+
+    <div class="jumbotron">
+      <h1 class="display-4">เว็บไซต์จองห้องพัก</h1>
+      <p class="lead"></p>
+      <hr class="my-4">
+      <p></p>
+    </div>
+
+    <% if(locals.user){%>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h1 class="my-4">ค้นหา "<%= Keyword %>"</h1>
+          <div class="col-lg-12 my-4">
+            <% if(chambers.length>0){%>
+            <div class="row">
+              <% chambers.forEach(function(chamber){ %>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                  <a href="/details/<%= chamber._id %>"><img class="card-img-top" src="/images/<%- chamber.image %>"
+                      alt=""></a>
+                  <div class="card-body">
+                    <h6 class="card-title">
+                      <a href="/details/<%= chamber._id %>"><%= chamber.name %></a>
+                    </h6>
+                    <h9><%= chamber.sector %></h9><br>
+                    <h9><%= chamber.province %></h9><br>
+                    <h9><%= chamber.bed %> เตียง</h9><br>
+                    <h9><%= chamber.type %></h9>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">
+                      <a href="/details/<%= chamber._id %>">See More &rarr;</a>
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+            <% }else {%>
+            <h3>-ไม่มีข้อมูลในฐานข้อมูล</h3>
+            <%} %>
+          </div>
+        </div>
+        <%- include ('../sidebar') %>
+      </div>
+    </div>
+  </div>
+  <% } %>
+
+</body>
+
+</html>

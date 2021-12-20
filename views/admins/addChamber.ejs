@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <h3 class="my-4" align="center">เพิ่มข้อมูลห้องพัก</h3>
+        <a href="/admins/chambers" class="btn btn-info">ย้อนกลับ</a>
+        <br>
+        <br>
+        <br>
+        <%- messages() %>
+
+        <% if(locals.errors){%>
+        <ul class="alert alert-danger" role="alert">
+            <% Object.values(errors).forEach(function(error){%>
+            <li><%= error.msg %></li>
+            <%}) %>
+        </ul>
+        <%}%>
+        <form action="/admins/addChamber" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <h6><label for="">ชื่อโรงแรม : </label></h6>
+                <input type="text" name="name" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">สถานที่ : </label></h6>
+                <input type="text" name="location" value="" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">ภาค :</label>
+                <select class="form-control" name="sector">
+                      <option value="ภาคเหนือ">เหนือ</option>
+                      <option value="ภาคกลาง">กลาง</option>
+                      <option value="ภาคอีสาน">อีสาน</option>
+                      <option value="ภาคใต้">ใต้</option>
+                </select>
+          </div>
+
+            <div class="form-group">
+                <h6><label for="">จังหวัด : </label></h6>
+                <input type="text" name="province" value="" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="">ประเภท :</label>
+                <select class="form-control" name="type">
+                      <option value="อพาร์ตเมนต์">อพาร์ตเมนต์</option>
+                      <option value="ที่พักตากอากาศ">ที่พักตากอากาศ</option>
+                      <option value="วิลลาส่วนตัว">วิลลาส่วนตัว</option>
+                      <option value="บังกะโล">บังกะโล</option>
+                </select>
+             </div>
+
+            <div class="form-group">
+                <h6><label for="">จำนวนเตียง : </label></h6>
+                <input type="text" name="bed" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">รายละเอียด : </label></h6>
+                <textarea name="description" rows="4" cols="80" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <h6><label for="">ราคาต่อคืน : </label></h6>
+                <input type="text" name="price" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">รูปภาพ : </label></h6>
+                <input type="file" name="image" value="" class="form-control">
+            </div>
+            <br>
+            <input type="submit" name="" value="บันทึกข้อมูล" class="btn btn-success">
+        </form>
+    </div>
+    <script>
+        $(function () {
+            $('#messages').addClass('alert alert-success')
+        })
+    </script>
+</body>
+
+</html>

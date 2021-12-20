@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <h3 class="my-4" align="center">เพิ่มข้อมูลโฆษณา</h3>
+        <a href="/admins/chambers" class="btn btn-info">ย้อนกลับ</a>
+        <br>
+        <br>
+        <br>
+        <%- messages() %>
+
+        <% if(locals.errors){%>
+        <ul class="alert alert-danger" role="alert">
+            <% Object.values(errors).forEach(function(error){%>
+            <li><%= error.msg %></li>
+            <%}) %>
+        </ul>
+        <%}%>
+        <form action="/admins/addAdvertise" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <h6><label for="">ชื่อโฆษณา : </label></h6>
+                <input type="text" name="name" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">รายละเอียด : </label></h6>
+                <textarea name="description" rows="4" cols="80" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <h6><label for="">รูปภาพ : </label></h6>
+                <input type="file" name="image" value="" class="form-control">
+            </div>
+            <br>
+            <input type="submit" name="" value="บันทึกข้อมูล" class="btn btn-success">
+        </form>
+    </div>
+    <script>
+        $(function () {
+            $('#messages').addClass('alert alert-success')
+        })
+    </script>
+</body>
+
+</html>

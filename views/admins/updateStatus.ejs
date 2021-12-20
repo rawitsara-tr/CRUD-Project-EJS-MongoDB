@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <h3 class="my-4" align="center">อัพเดทสถานะ</h3>
+        <a href="/admins/contact" class="btn btn-info">ย้อนกลับ</a>
+        <br>
+        <br>
+        <br>
+        <% contacts.forEach(function(contact){ %>
+        <form action="/admins/updateStatus" method="post">
+            <div class="form-group">
+                <label for="">ติดต่อหน่วยงาน :</label>
+                <input class="form-control" type="text" name="type" value="<%= contact.type %>" placeholder="<%= contact.type %>" readonly>
+            </div>
+            <input type="hidden" name="id" value="<%= contact._id %>">
+            <div class="form-group">
+                <h6><label for="">ชื่อของท่าน : </label></h6>
+                <input class="form-control" type="text" name="fname" value="<%= contact.fname %>" placeholder="<%= contact.fname %>" readonly>
+            </div>
+            <div class="form-group">
+                <h6><label for="">นามสกุล : </label></h6>
+                <input class="form-control" type="text" name="lname" value="<%= contact.lname %>" placeholder="<%= contact.lname %>" readonly>
+            </div>
+            <div class="form-group">
+                <h6><label for="">โทรศัพท์ : </label></h6>
+                <input class="form-control" type="text" name="phone" value="<%= contact.phone %>" placeholder="<%= contact.phone %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="">Email :</label>
+                <input class="form-control" type="text" name="email" value="<%= contact.email %>" placeholder="<%= contact.email %>" readonly>
+            </div>
+            <div class="form-group">
+                <h6><label for="">ข้อความ : </label></h6>
+                <input class="form-control" type="text" name="message" value="<%= contact.message %>" placeholder="<%= contact.message %>" readonly>
+            </div>
+            <div class="form-group">
+                <label for="">สถานะ :</label>
+                <select class="form-control" name="status">
+                    <option value="รอดำเนินการ" <% if(contact.status=="รอดำเนินการ"){%> selected <% }%>>รอดำเนินการ</option>
+                    <option value="ยอมรับ" <% if(contact.status=="ยอมรับ"){%> selected <% }%>>ยอมรับ</option>
+                    <option value="ปฏิเสธ" <% if(contact.status=="ปฏิเสธ"){%> selected <% }%>>ปฏิเสธ</option>
+                </select>
+            </div>
+            <br>
+            <input type="submit" name="" value="อัพเดทสถานะ" class="btn btn-success">
+        </form>
+        <% }) %>
+    </div>
+</body>
+
+</html>

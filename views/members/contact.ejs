@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <%- include ('../layout') %>
+    <div class="container">
+        <h3 class="my-4" align="center">ติดต่อพวกเรา</h3>
+        <br>
+        <br>
+        <br>
+        <%- messages() %>
+
+        <% if(locals.errors){%>
+        <ul class="alert alert-danger" role="alert">
+            <% Object.values(errors).forEach(function(error){%>
+            <li><%= error.msg %></li>
+            <%}) %>
+        </ul>
+        <%}%>
+        <form action="/members/contact" method="post">
+            <div class="form-group">
+                <label for="">ติดต่อหน่วยงาน :</label>
+                <select class="form-control" name="type">
+                    <option value="ลงโฆษณา">ลงโฆษณา</option>
+                    <option value="บริการลูกค้า">บริการลูกค้า</option>
+                    <option value="งานบัญชี">งานบัญชี</option>
+                </select>
+          </div>
+            <div class="form-group">
+                <h6><label for="">ชื่อของท่าน : </label></h6>
+                <input type="text" name="fname" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">นามสกุล : </label></h6>
+                <input type="text" name="lname" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">โทรศัพท์ : </label></h6>
+                <input type="text" name="phone" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Email :</label>
+                <input type="text" name="email" value="" class="form-control">
+            </div>
+            <div class="form-group">
+                <h6><label for="">ข้อความ : </label></h6>
+                <textarea name="message" rows="4" cols="80" class="form-control"></textarea>
+            </div>
+        <div class="form-group">
+            <input type="hidden" name="status" value="รอดำเนินการ" class="btn btn-outline-white" style="color: white ">
+      </div>
+
+            <br>
+            <input type="submit" name="" value="ส่งให้เรา" class="btn btn-success">
+        </form>
+    </div>
+    <br><br>
+  <footer class="py-3 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">บริษัท โปรเจค จำกัด</p>
+      <p class="m-0 text-center text-white">ซอยฉลองกรุง แขวงลาดกระบัง เขตลาดกระบัง กรุงเทพมหานคร 10520</p>
+      <p class="m-0 text-center text-white">081-8311518</p>
+    </div>
+  </footer>
+    <script>
+        $(function () {
+            $('#messages').addClass('alert alert-success')
+        })
+    </script>
+</body>
+
+</html>
